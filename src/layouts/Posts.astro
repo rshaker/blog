@@ -29,7 +29,7 @@ const next = pageNum < totalPages ? "" : "disabled";
       {
         posts.map(({ frontmatter }) => {
           return (
-            <Card href={`/posts/${slugify(frontmatter)}`} post={frontmatter} />
+            <Card href={`/${SITE.base}/posts/${slugify(frontmatter)}`} post={frontmatter} />
           );
         })
       }
@@ -39,7 +39,7 @@ const next = pageNum < totalPages ? "" : "disabled";
   <nav class="pagination-wrapper" aria-label="Pagination Navigation">
     <LinkButton
       tabindex={prev === "disabled" ? "-1" : "0"}
-      href={`/posts${pageNum - 1 !== 1 ? "/" + (pageNum - 1) : ""}`}
+      href={`${SITE.base}/posts${pageNum - 1 !== 1 ? "/" + (pageNum - 1) : ""}`}
       className={`mr-4 select-none ${prev}`}
     >
       <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
@@ -51,7 +51,7 @@ const next = pageNum < totalPages ? "" : "disabled";
     </LinkButton>
     <LinkButton
       tabindex={next === "disabled" ? "-1" : "0"}
-      href={`/posts/${pageNum + 1}`}
+      href={`${SITE.base}/posts/${pageNum + 1}`}
       className={`ml-4 select-none ${next}`}
     >
       Next

@@ -1,10 +1,13 @@
 ---
+import { SITE } from "src/config";
+
 // Remove current url path and remove trailing slash if exists
 const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
 
 // Get url array from path
 // eg: /tags/tailwindcss => ['tags', 'tailwindcss']
-const breadcrumbList = currentUrlPath.split("/").slice(1);
+// const breadcrumbList = currentUrlPath.split("/").slice(1);
+const breadcrumbList = currentUrlPath.split("/").slice((SITE.base) ? 2 : 1); // remove base z for github
 
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
@@ -22,7 +25,7 @@ if (
 
 <nav class="breadcrumb" aria-label="breadcrumb">
   <ul>
-    <li><a href="/">Home</a></li>
+    <li><a href={`/${SITE.base}/`}>Homeagain</a></li>
     {
       breadcrumbList.map((breadcrumb, index) => (
         <li>
@@ -31,7 +34,7 @@ if (
               {breadcrumb}
             </span>
           ) : (
-            <a href={`/${breadcrumb}`}>{breadcrumb}</a>
+            <a href={`/${SITE.base}/${breadcrumb}`}>{breadcrumb}</a>
           )}
         </li>
       ))

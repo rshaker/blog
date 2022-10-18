@@ -1,3 +1,4 @@
+import { SITE } from "src/config";
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState } from "react";
 import Card from "@components/Card";
@@ -107,7 +108,7 @@ export default function SearchBar({ searchList }: Props) {
           searchResults.map(({ item, refIndex }) => (
             <Card
               post={item.frontmatter}
-              href={`/posts/${slugify(item.frontmatter)}`}
+              href={`/${SITE.base}/posts/${slugify(item.frontmatter)}`}
               key={`${refIndex}-${slugify(item.frontmatter)}`}
             />
           ))}
@@ -115,3 +116,4 @@ export default function SearchBar({ searchList }: Props) {
     </>
   );
 }
+
